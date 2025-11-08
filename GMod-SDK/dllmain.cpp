@@ -86,7 +86,7 @@ void Main()
     //oRenderView = VMTHook<_RenderView>((PVOID**)ViewRender, (PVOID)hkRenderView, 6);
     //oPaintTraverse = VMTHook< _PaintTraverse>((PVOID**)PanelWrapper, (PVOID)hkPaintTraverse, 41);
     //oDrawModelExecute = VMTHook< _DrawModelExecute>((PVOID**)ModelRender, (PVOID)hkDrawModelExecute, 20);
-    oProcessGMOD_ServerToClient = VMTHook< _ProcessGMOD_ServerToClient>((PVOID**)ClientState, (PVOID)hkProcessGMOD_ServerToClient, 64);
+    //oProcessGMOD_ServerToClient = VMTHook< _ProcessGMOD_ServerToClient>((PVOID**)ClientState, (PVOID)hkProcessGMOD_ServerToClient, 64);
     //oRunCommand = VMTHook< _RunCommand>((PVOID**)Prediction, (PVOID)hkRunCommand, 19);
     //oPaint = VMTHook<_Paint>((PVOID**)EngineVGui, (PVOID)hkPaint, 13);
 
@@ -113,7 +113,7 @@ void Main()
     //GlobalVars->maxClients
     //GlobalVars + 0x14 = 1 will let u do anything lua related
     oPresent = *(_Present*)(present);
-    *(_Present**)(present) = (_Present*)hkPresent;
+    //*(_Present**)(present) = (_Present*)hkPresent;
 
     //EngineClient->ClientCmd_Unrestricted("play \"items/suitchargeok1.wav\"");
         //Sleep(2200);
