@@ -7,6 +7,8 @@
 
 #include <d3dtypes.h>
 #include <dcommon.h>
+#include <d2d1.h>
+#pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
