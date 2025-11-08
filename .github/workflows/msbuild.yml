@@ -1,0 +1,26 @@
+name: Build GMod-SDK
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup MSBuild path
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Build solution
+      run: msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64
+
+    - name: Archive build
+      uses: actions/upload-artifact@v3
+      with:
+        name: GMod-SDK-Release
+        path: "**/Release/*.dll"
