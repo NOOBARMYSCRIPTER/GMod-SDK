@@ -29,9 +29,9 @@ jobs:
     - name: Build solution
       shell: pwsh
       run: |
-        $IncludePath = "C:\dx9\Include;$env:WindowsSDK_IncludePath_x64"
-        $LibraryPath = "C:\dx9\Lib\x64;$env:WindowsSDK_LibraryPath_x64"
-        msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64 /p:IncludePath="$IncludePath" /p:LibraryPath="$LibraryPath"
+        $IncludePath = 'C:\dx9\Include;"C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um"'
+        $LibraryPath = 'C:\dx9\Lib\x64;"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64"'
+        msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64 "/p:IncludePath=$IncludePath" "/p:LibraryPath=$LibraryPath"
 
     - name: Archive build
       uses: actions/upload-artifact@v4
