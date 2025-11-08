@@ -360,7 +360,7 @@ namespace GUI
 				ImGui::SameLine(19.f);
 				if (ImGui::BeginGroupBox("Friends", ImVec2(258.f - 40.f, 415.f)))
 				{
-					if (ClientEntityList && EngineClient->IsInGame() && false)
+					if (ClientEntityList && EngineClient->IsInGame())
 					{
 						Settings::friendListMutex.lock();
 						std::map<C_BasePlayer*, std::pair<bool, int>> tempFriendList;
@@ -440,7 +440,7 @@ namespace GUI
 				ImGui::SameLine(19.f);
 				if (ImGui::BeginGroupBox("Entities", ImVec2(258.f - 40.f, 415.f)))
 				{
-					if (ClientEntityList && EngineClient->IsInGame() && false)
+					if (ClientEntityList && EngineClient->IsInGame())
 					{
 						Settings::luaEntListMutex.lock();
 
