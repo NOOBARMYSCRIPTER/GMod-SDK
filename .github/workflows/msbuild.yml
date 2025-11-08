@@ -28,6 +28,7 @@ jobs:
 
     - name: Build solution
       shell: pwsh
+      working-directory: GMod-SDK
       run: |
         $dxInclude  = "C:\dx9\Include"
         $dxLib      = "C:\dx9\Lib\x64"
