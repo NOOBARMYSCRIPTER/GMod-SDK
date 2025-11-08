@@ -121,7 +121,7 @@ void Main()
     MatSystemSurface->PlaySound("HL1/fvox/bell.wav");
     Sleep(1100);
     MatSystemSurface->PlaySound("HL1/fvox/activated.wav");
-    Globals::openMenu = true;
+    //Globals::openMenu = true;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, uintptr_t ul_reason_for_call, LPVOID lpReserved)
