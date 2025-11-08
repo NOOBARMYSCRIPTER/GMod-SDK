@@ -32,14 +32,17 @@ jobs:
 
     - name: Build solution
       shell: pwsh
-      working-directory: GMod-SDK
+      working-directory: GMod-SDK/GMod-SDK
       run: |
         $dxInclude  = "C:\dx9\Include"
         $dxLib      = "C:\dx9\Lib\x64"
         $winInclude = "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um"
         $winLib     = "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64"
     
-        msbuild "GMod-SDK.sln" `
+        $sln = (Get-ChildItem -Filter *.sln).Name
+        Write-Host "Found solution file: $sln"
+    
+        msbuild "$sln" `
           /p:Configuration=Release `
           /p:Platform=x64 `
           /p:AdditionalIncludeDirectories="$dxInclude;$winInclude" `
