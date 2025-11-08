@@ -39,7 +39,7 @@ jobs:
         $winInclude = "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um"
         $winLib     = "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64"
     
-        msbuild GMod‑SDK.sln `
+        msbuild "GMod-SDK.sln" `
           /p:Configuration=Release `
           /p:Platform=x64 `
           /p:AdditionalIncludeDirectories="$dxInclude;$winInclude" `
