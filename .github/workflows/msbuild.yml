@@ -27,6 +27,7 @@ jobs:
         Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Lib\x64\*" -Destination "C:\dx9\Lib\x64" -Recurse -Force
 
     - name: Build solution
+      shell: pwsh
       run: |
         $dxInclude = "C:\dx9\Include"
         $dxLib = "C:\dx9\Lib\x64"
@@ -38,7 +39,6 @@ jobs:
           /p:Platform=x64 `
           /p:AdditionalIncludeDirectories="$dxInclude;$winInclude" `
           /p:AdditionalLibraryDirectories="$dxLib;$winLib"
-      shell: pwsh
 
     - name: Archive build
       uses: actions/upload-artifact@v4
