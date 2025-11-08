@@ -42,11 +42,11 @@ jobs:
         $sln = (Get-ChildItem -Filter *.sln).Name
         Write-Host "Found solution file: $sln"
     
-        msbuild "$sln" `
+        msbuild "`"$sln`"" `
           /p:Configuration=Release `
           /p:Platform=x64 `
-          /p:AdditionalIncludeDirectories="$dxInclude;$winInclude" `
-          /p:AdditionalLibraryDirectories="$dxLib;$winLib"
+          "/p:AdditionalIncludeDirectories=`"$dxInclude;$winInclude`"" `
+          "/p:AdditionalLibraryDirectories=`"$dxLib;$winLib`""
 
     - name: Archive build
       uses: actions/upload-artifact@v4
