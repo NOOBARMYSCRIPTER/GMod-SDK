@@ -31,20 +31,14 @@ jobs:
       shell: pwsh
                 
     - name: Build solution
-      shell: pwsh
+      shell: cmd
       run: |
-        $dxInclude  = "C:\dx9\Include"
-        $dxLib      = "C:\dx9\Lib\x64"
-        $winInclude = "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um"
-        $winLib     = "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64"
+        set DXINC=C:\dx9\Include
+        set DXLIB=C:\dx9\Lib\x64
     
-        $sln = Get-ChildItem -Recurse -Filter *.sln | Select-Object -First 1
-        if (-not $sln) { Write-Error "❌ .sln file not found!"; exit 1 }
-        Write-Host "✅ Found solution file: $($sln.FullName)"
+        cd GMod-SDK\GMod-SDK
     
-        Set-Location $sln.Directory.FullName
-    
-        cmd /c "msbuild `"$($sln.Name)`" /p:Configuration=Release /p:Platform=x64 /p:IncludePath=`"$dxInclude;$winInclude;`$(IncludePath)`" /p:LibraryPath=`"$dxLib;$winLib;`$(LibraryPath)`""
+        msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64 /p:AdditionalIncludeDirectories=%DXINC% /p:AdditionalLibraryDirectories=%DXLIB%
 
     - name: Archive build
       uses: actions/upload-artifact@v4
