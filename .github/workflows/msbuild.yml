@@ -26,9 +26,11 @@ jobs:
         Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Include\*" -Destination "C:\dx9\Include" -Recurse -Force
         Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Lib\x64\*" -Destination "C:\dx9\Lib\x64" -Recurse -Force
 
-    - name: Find solution file
-      run: Get-ChildItem -Recurse -Filter *.sln
-      shell: pwsh
+    - name: Verify DX9 files
+      run: |
+        dir "C:\dx9\Include\d3dx9.h"
+        dir "C:\dx9\Lib\x64\d3dx9.lib"
+      shell: powershell
                 
     - name: Build solution
       shell: cmd
