@@ -27,19 +27,14 @@ jobs:
         Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Lib\x64\*" -Destination "C:\dx9\Lib\x64" -Recurse -Force
 
     - name: Build solution
-      shell: pwsh
       run: |
-        # Пути к DX9 SDK и Windows SDK
         $dxInclude = "C:\dx9\Include"
         $dxLib = "C:\dx9\Lib\x64"
         $windowsInclude = "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um"
         $windowsLib = "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64"
     
-        msbuild GMod-SDK.sln `
-          /p:Configuration=Release `
-          /p:Platform=x64 `
-          "/p:IncludePath=$dxInclude;$windowsInclude" `
-          "/p:LibraryPath=$dxLib;$windowsLib"
+        msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64 /p:IncludePath="`"$dxInclude;$windowsInclude`"" /p:LibraryPath="`"$dxLib;$windowsLib`""
+      shell: pwsh
 
     - name: Archive build
       uses: actions/upload-artifact@v4
