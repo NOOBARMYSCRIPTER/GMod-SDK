@@ -25,21 +25,11 @@ jobs:
         New-Item -ItemType Directory -Path "C:\dx9\Lib\x64" -Force
         Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Include\*" -Destination "C:\dx9\Include" -Recurse -Force
         Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Lib\x64\*" -Destination "C:\dx9\Lib\x64" -Recurse -Force
-
-    - name: Verify DX9 files
-      run: |
-        dir "C:\dx9\Include\d3dx9.h"
-        dir "C:\dx9\Lib\x64\d3dx9.lib"
-      shell: powershell
-
-    - name: Set DXSDK_DIR
-      run: |
-        setx DXSDK_DIR "C:\dx9"
-      shell: cmd
                     
     - name: Build solution
       shell: cmd
       run: |
+        set DXSDK_DIR=C:\dx9
         cd GMod-SDK\GMod-SDK
         msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64
 
