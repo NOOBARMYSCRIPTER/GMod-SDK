@@ -17,11 +17,15 @@ jobs:
     - name: Setup MSBuild path
       uses: microsoft/setup-msbuild@v1
 
-    - name: Install DirectX SDK
-      run: choco install directx-sdk -y
+    - name: Install DirectX 9 SDK
+      run: |
+        Invoke-WebRequest -Uri "https://download.microsoft.com/download/1/5/2/1520E5D3-88AD-4B91-BDFB-65D5B2ED9356/dxsdk_jun10.exe" -OutFile dxsdk_jun10.exe
+        Start-Process -FilePath dxsdk_jun10.exe -ArgumentList "/Q" -Wait
 
     - name: Build solution
-      run: msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64 /p:IncludePath="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /p:LibraryPath="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64"
+      run: msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64 `
+        /p:IncludePath="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" `
+        /p:LibraryPath="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64"
 
     - name: Archive build
       uses: actions/upload-artifact@v4
