@@ -19,10 +19,12 @@ jobs:
 
     - name: Download DX9 SDK from GitHub
       run: |
-        Invoke-WebRequest -Uri "https://github.com/maikel233/X-HOOK-For-CSGO/archive/refs/heads/master.zip" -OutFile dx9.zip
+        Invoke-WebRequest -Uri "https://github.com/AliveTeam/DX9_SDK_Aug09/archive/refs/heads/master.zip" -OutFile dx9.zip
         Expand-Archive dx9.zip -DestinationPath C:\dx9
-        Move-Item -Path "C:\dx9\X-HOOK-For-CSGO-master\DX9 SDK\Include" -Destination "C:\dx9\Include"
-        Move-Item -Path "C:\dx9\X-HOOK-For-CSGO-master\DX9 SDK\Lib\x64" -Destination "C:\dx9\Lib\x64"
+        New-Item -ItemType Directory -Path "C:\dx9\Include" -Force
+        New-Item -ItemType Directory -Path "C:\dx9\Lib\x64" -Force
+        Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Include\*" -Destination "C:\dx9\Include" -Recurse -Force
+        Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Lib\x64\*" -Destination "C:\dx9\Lib\x64" -Recurse -Force
 
     - name: Build solution
       run: msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64 /p:IncludePath="C:\dx9\Include" /p:LibraryPath="C:\dx9\Lib\x64"
