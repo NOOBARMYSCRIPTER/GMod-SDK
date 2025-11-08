@@ -228,7 +228,7 @@ HRESULT __stdcall hkPresent(IDirect3DDevice9* pDevice, CONST RECT* pSourceRect, 
 
 	doEsp();
 #ifdef _DEBUG
-		if (EngineClient->IsInGame())
+		if (EngineClient->IsInGame() && false)
 		{
 
 			auto cmd = Globals::lastEndCmd;
