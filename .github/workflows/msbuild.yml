@@ -29,7 +29,7 @@ jobs:
     - name: Find solution file
       run: Get-ChildItem -Recurse -Filter *.sln
       shell: pwsh
-
+    
     - name: Build solution
       shell: pwsh
       run: |
@@ -42,9 +42,7 @@ jobs:
         if (-not $sln) { Write-Error "❌ .sln file not found!"; exit 1 }
         Write-Host "✅ Found solution file: $($sln.FullName)"
     
-        Set-Location $sln.Directory.FullName
-    
-        msbuild "`"$($sln.Name)`"" `
+        msbuild "`"$($sln.FullName)`"" `
           /p:Configuration=Release `
           /p:Platform=x64 `
           "/p:AdditionalIncludeDirectories=`"$dxInclude;$winInclude`"" `
