@@ -27,7 +27,7 @@ jobs:
         Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Lib\x64\*" -Destination "C:\dx9\Lib\x64" -Recurse -Force
 
     - name: Build solution
-      run: msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64 /p:IncludePath="C:\dx9\Include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um" /p:LibraryPath="C:\dx9\Lib\x64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64"
+      run: msbuild GMod-SDK.sln /p:Configuration=Release /p:Platform=x64 /p:IncludePath="C:\dx9\Include;$(WindowsSDK_IncludePath_x64)" /p:LibraryPath="C:\dx9\Lib\x64;$(WindowsSDK_LibraryPath_x64)"
 
     - name: Archive build
       uses: actions/upload-artifact@v4
