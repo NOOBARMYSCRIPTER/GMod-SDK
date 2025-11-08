@@ -26,6 +26,10 @@ jobs:
         Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Include\*" -Destination "C:\dx9\Include" -Recurse -Force
         Copy-Item -Path "C:\dx9\DX9_SDK_Aug09-master\Lib\x64\*" -Destination "C:\dx9\Lib\x64" -Recurse -Force
 
+    - name: Find solution file
+      run: Get-ChildItem -Recurse -Filter *.sln
+      shell: pwsh
+
     - name: Build solution
       shell: pwsh
       working-directory: GMod-SDK
