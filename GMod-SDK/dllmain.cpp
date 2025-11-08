@@ -90,7 +90,7 @@ void Main()
     oRunCommand = VMTHook< _RunCommand>((PVOID**)Prediction, (PVOID)hkRunCommand, 19);
     oPaint = VMTHook<_Paint>((PVOID**)EngineVGui, (PVOID)hkPaint, 13);
 
-    present = GetRealFromRelative((char*)findPattern(PresentModule, PresentPattern, "Present"), 0x2, 6, false);
+    present = GetRealFromRelative((char*)findPattern(PresentModule, PresentPattern, "Present"), 3, 7, false);
 
     Globals::damageEvent = new DamageEvent();
     Globals::deathEvent = new DeathEvent();
